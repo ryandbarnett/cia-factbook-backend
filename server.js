@@ -21,3 +21,33 @@ app.get('/api/v1/countries', (request, response) => {
       response.status(500).json({ error });
     });
 })
+
+app.get('/api/v1/countries/:id', (request, response) => {
+  database('countries').where('id', request.params.id).select()
+    .then((country) => {
+      response.status(200).json(country);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+})
+
+app.get('/api/v1/resources', (request, response) => {
+  database('resources').select()
+    .then((resources) => {
+      response.status(200).json(resources);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+})
+
+app.get('/api/v1/resources/:id', (request, response) => {
+  database('resources').where('id', request.params.id).select()
+    .then((resource) => {
+      response.status(200).json(resource);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+})
