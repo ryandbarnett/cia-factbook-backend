@@ -62,3 +62,14 @@ app.get('/api/v1/resources/:id', (request, response) => {
     response.status(500).json({ error });
   });
 });
+
+app.post('/api/v1/resources', (request, response) => {
+  const {name} = request.body;
+  database('resources').insert({name}, 'id')
+  .then(id => {
+    response.status(201).json({id: id[0], name});
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
