@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/RyanDBarnett/cia-factbook-backend/issues"
   },
-  "homepage": "https://github.com/RyanDBarnett/cia-factbook-backend#readme"
+  "homepage": "https://github.com/RyanDBarnett/cia-factbook-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
