@@ -1,7 +1,7 @@
 let countries = require('../../data/countries.js');
 let resources = require('../../data/resources.js');
 
-exports.seed = function(knex, Promise) {
+exports.seed = function(knex) {
   return knex('country-resources').del()
   .then(() => {
     return knex('countries', 'resources').del();
