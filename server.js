@@ -8,11 +8,9 @@ const app = express();
 
 app.use(express.json());
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is running on ${port}`);
 });
-
-app.set('port', process.env.PORT || 3000);
 
 app.get('/api/v1/countries', (request, response) => {
   database('countries').select()
