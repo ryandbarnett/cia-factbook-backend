@@ -73,3 +73,41 @@ app.post('/api/v1/resources', (request, response) => {
     response.status(500).json({ error });
   });
 });
+
+app.get('/api/v1/country-resources', (request, response) => {
+  database('country-resources').select()
+  .then((resources) => {
+    response.status(200).json(resources);
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+app.get('/api/v1/country-resources/:id', (request, response) => {
+  database('country-resources').where('id', request.params.id).select()
+  .then((resource) => {
+    response.status(200).json(resource);
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+app.post('/api/v1/resources', (request, response) => {
+  const {country_id, resource_id} = request.body;
+  database('country-resources').insert({country_id, resource_id}, 'id')
+  .then(id => {
+    response.status(201).json({id: id[0], country_id, resource_id});
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  });
+});
+
+app.delete('/api/v1/country-resources/:id', (request, response) => {
+  database('country-resources').where({ id: request.params.id}).del()
+  .then(()=> {
+      response.json({success: true})
+  })
+});
