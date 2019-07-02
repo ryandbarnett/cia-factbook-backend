@@ -1,5 +1,5 @@
 // Node/knex environment variable
-const environment = process.env.NODE_ENV || 'development';
+const environment = 'development';
 // Knex configuration
 const configuration = require('./knexfile')[environment];
 // Knex database
@@ -13,7 +13,7 @@ const app = express();
 // Use express.json to automatically parse incoming requests
 app.use(express.json());
 
-app.listen(process.env.PORT || port, () => {
+app.listen(() => {
   console.log(`App is running on ${port}`);
 });
 
@@ -158,3 +158,5 @@ app.delete('/api/v1/country-resources/:id', (request, response) => {
       response.json({success: true})
   })
 });
+
+module.exports = app;
